@@ -1,22 +1,25 @@
 package wsu.edu.traintrackjavafx.model;
 
+import wsu.edu.traintrackjavafx.model.interfaces.GridInterface;
+import wsu.edu.traintrackjavafx.model.interfaces.TrackInterface;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class GridImpl {
+public class Grid implements GridInterface {
     // ratio 16:9 for every 16 cols there are 9 rows
     private final int ROWS = 90;
     private final int COLUMNS = 160;
     private OrderedPair nextPos;
-    private List<TrackImpl> tracks;
+    private List<TrackInterface> tracks;
 
-    public GridImpl(){
+    public Grid(){
         this.tracks = new ArrayList<>();
     }
 
 
     // place a track in the grid, make sure it is a valid placement
-    public boolean add(TrackImpl track){
+    public boolean add(TrackInterface track){
         OrderedPair op = track.getCurPos();
         if (!inBounds(op)){
             return false;
@@ -33,7 +36,7 @@ public class GridImpl {
     }
 
 
-    public boolean remove(TrackImpl track){
+    public boolean remove(TrackInterface track){
         OrderedPair op = track.getCurPos();
         for (int i = 0; i < tracks.size(); i++) {
             if (op.equals(tracks.get(i).getCurPos())){

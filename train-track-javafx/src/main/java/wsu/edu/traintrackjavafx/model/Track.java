@@ -2,44 +2,33 @@ package wsu.edu.traintrackjavafx.model;
 
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import wsu.edu.traintrackjavafx.model.enums.Direction;
+import wsu.edu.traintrackjavafx.model.enums.TrackType;
+import wsu.edu.traintrackjavafx.model.interfaces.TrackInterface;
 
 import java.util.ArrayList;
 
-public class TrackImpl {
+public class Track implements TrackInterface {
 
     // 8 possible directions given that a curved track curves exactly 45 degrees
-    public enum Direction {
-        DOWN,
-        UP,
-        LEFT,
-        RIGHT,
-        UPLEFT,
-        UPRIGHT,
-        DOWNLEFT,
-        DOWNRIGHT
-    }
-    public enum TrackType{
-        STRAIGHT,
-        CURVELEFT,
-        CURVERIGHT
-    }
+
     TrackType trackType;
     Direction direction;
     OrderedPair curPos;
     OrderedPair nextPos;
     ArrayList<Direction> dirList;
-    TrackImpl prev;
-    TrackImpl next;
+    Track prev;
+    Track next;
 
 
-    public TrackImpl(int x, int y, TrackType trackType, Direction direction){
+    public Track(int x, int y, TrackType trackType, Direction direction){
         this.curPos = new OrderedPair(x, y);
         this.trackType = trackType;
         this.dirList = new ArrayList<>();
         initDirList(dirList);
         this.nextPos = calcNextPos(trackType, direction);
     }
-    public TrackImpl(OrderedPair orderedPair, TrackType trackType, Direction direction){
+    public Track(OrderedPair orderedPair, TrackType trackType, Direction direction){
         this.curPos = orderedPair;
         this.trackType = trackType;
         this.dirList = new ArrayList<>();
@@ -131,23 +120,22 @@ public class TrackImpl {
     }
 
     public Shape getTrack(){
-
         return new Rectangle();
     }
 
-    public TrackImpl getPrev() {
+    public Track getPrev() {
         return prev;
     }
 
-    public void setPrev(TrackImpl prev) {
+    public void setPrev(Track prev) {
         this.prev = prev;
     }
 
-    public TrackImpl getNext() {
+    public Track getNext() {
         return next;
     }
 
-    public void setNext(TrackImpl next) {
+    public void setNext(Track next) {
         this.next = next;
     }
 }

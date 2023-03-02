@@ -1,13 +1,13 @@
 package wsu.edu.traintrackjavafx.controller.commands;
 
-import wsu.edu.traintrackjavafx.model.TrackImpl;
+import wsu.edu.traintrackjavafx.model.Track;
 
 public class AddObjectCommand implements Command {
     private int row;
     private int col;
-    private TrackImpl track;
+    private Track track;
 
-    public AddObjectCommand(int row, int col, TrackImpl track) {
+    public AddObjectCommand(int row, int col, Track track) {
         this.row = row;
         this.col = col;
         this.track = track;
