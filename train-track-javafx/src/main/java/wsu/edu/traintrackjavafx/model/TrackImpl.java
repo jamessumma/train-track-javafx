@@ -4,9 +4,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Track {
+public class TrackImpl {
 
     // 8 possible directions given that a curved track curves exactly 45 degrees
     public enum Direction {
@@ -29,18 +28,18 @@ public class Track {
     OrderedPair curPos;
     OrderedPair nextPos;
     ArrayList<Direction> dirList;
-    Track prev;
-    Track next;
+    TrackImpl prev;
+    TrackImpl next;
 
 
-    public Track(int x, int y, TrackType trackType, Direction direction){
+    public TrackImpl(int x, int y, TrackType trackType, Direction direction){
         this.curPos = new OrderedPair(x, y);
         this.trackType = trackType;
         this.dirList = new ArrayList<>();
         initDirList(dirList);
         this.nextPos = calcNextPos(trackType, direction);
     }
-    public Track(OrderedPair orderedPair, TrackType trackType, Direction direction){
+    public TrackImpl(OrderedPair orderedPair, TrackType trackType, Direction direction){
         this.curPos = orderedPair;
         this.trackType = trackType;
         this.dirList = new ArrayList<>();
@@ -136,19 +135,19 @@ public class Track {
         return new Rectangle();
     }
 
-    public Track getPrev() {
+    public TrackImpl getPrev() {
         return prev;
     }
 
-    public void setPrev(Track prev) {
+    public void setPrev(TrackImpl prev) {
         this.prev = prev;
     }
 
-    public Track getNext() {
+    public TrackImpl getNext() {
         return next;
     }
 
-    public void setNext(Track next) {
+    public void setNext(TrackImpl next) {
         this.next = next;
     }
 }

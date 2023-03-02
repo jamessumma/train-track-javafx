@@ -3,20 +3,20 @@ package wsu.edu.traintrackjavafx.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Grid {
+public class GridImpl {
     // ratio 16:9 for every 16 cols there are 9 rows
     private final int ROWS = 90;
     private final int COLUMNS = 160;
     private OrderedPair nextPos;
-    private List<Track> tracks;
+    private List<TrackImpl> tracks;
 
-    public Grid(){
+    public GridImpl(){
         this.tracks = new ArrayList<>();
     }
 
 
     // place a track in the grid, make sure it is a valid placement
-    public boolean add(Track track){
+    public boolean add(TrackImpl track){
         OrderedPair op = track.getCurPos();
         if (!inBounds(op)){
             return false;
@@ -33,7 +33,7 @@ public class Grid {
     }
 
 
-    public boolean remove(Track track){
+    public boolean remove(TrackImpl track){
         OrderedPair op = track.getCurPos();
         for (int i = 0; i < tracks.size(); i++) {
             if (op.equals(tracks.get(i).getCurPos())){
@@ -49,6 +49,7 @@ public class Grid {
     }
 
     // this effectively removes the track stored at index by shifting everything to the left
+    // starting at the index of the track to be removed
     private boolean shiftFrom(int index){
         if (index >= this.tracks.size() || index < 0) return false;
         for (int i = index; i < tracks.size() - 1; i++) {
