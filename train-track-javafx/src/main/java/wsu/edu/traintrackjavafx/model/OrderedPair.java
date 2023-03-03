@@ -1,6 +1,6 @@
 package wsu.edu.traintrackjavafx.model;
 
-public class OrderedPair {
+public class OrderedPair implements Comparable<OrderedPair>{
     private int x;
     private int y;
 
@@ -27,5 +27,16 @@ public class OrderedPair {
 
     public boolean equals(OrderedPair op){
         return op.getX() == this.getX() && op.getY() == this.getY();
+    }
+
+    @Override
+    public int compareTo(OrderedPair op) {
+        if (this.x < op.getX()) {
+            return -1;
+        } else if (this.x > op.getX()) {
+            return 1;
+        } else {
+            return Integer.compare(this.y, op.getY());
+        }
     }
 }

@@ -9,7 +9,9 @@ public interface TrackInterface {
 
     public TrackType getTrackType();
 
-    public Direction getDirection();
+    public Direction getInDirection();
+
+    public Direction getOutDirection();
 
     public OrderedPair getCurPos();
 

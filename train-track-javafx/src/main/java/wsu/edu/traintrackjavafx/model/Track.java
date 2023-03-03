@@ -13,27 +13,30 @@ public class Track implements TrackInterface {
     // 8 possible directions given that a curved track curves exactly 45 degrees
 
     TrackType trackType;
-    Direction direction;
-    OrderedPair curPos;
-    OrderedPair nextPos;
+    Direction inDirection;
+    Direction outDirection;
+    OrderedPair curTrackPosition;
+    OrderedPair nextTrackPosition;
     ArrayList<Direction> dirList;
     Track prev;
     Track next;
 
 
-    public Track(int x, int y, TrackType trackType, Direction direction){
-        this.curPos = new OrderedPair(x, y);
+    public Track(int x, int y, TrackType trackType, Direction inDirection){
+        this.inDirection = inDirection;
+        this.curTrackPosition = new OrderedPair(x, y);
         this.trackType = trackType;
         this.dirList = new ArrayList<>();
         initDirList(dirList);
-        this.nextPos = calcNextPos(trackType, direction);
+        this.nextTrackPosition = calcNextPos();
     }
-    public Track(OrderedPair orderedPair, TrackType trackType, Direction direction){
-        this.curPos = orderedPair;
+    public Track(OrderedPair orderedPair, TrackType trackType, Direction inDirection){
+        this.inDirection = inDirection;
+        this.curTrackPosition = orderedPair;
         this.trackType = trackType;
         this.dirList = new ArrayList<>();
         initDirList(dirList);
-        this.nextPos = calcNextPos(trackType, direction);
+        this.nextTrackPosition = calcNextPos();
     }
 
     public void initDirList(ArrayList<Direction> list){
@@ -49,14 +52,12 @@ public class Track implements TrackInterface {
 
     /**
      * calculate the position of the next track based on the current track's type and direction
-     * @param trackType enum CURVEDLEFT, CURVEDRIGHT, or STRAIGHT
-     * @param prevDirection enum DOWN, UP, LEFT, RIGHT, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT
      * @return ordered pair containing coordinates of the next track to be placed
      */
-    private OrderedPair calcNextPos(TrackType trackType, Direction prevDirection) {
-        Direction relDir = getRelativeDirection(trackType);
-        int x = this.curPos.getX();
-        int y = this.curPos.getY();
+    private OrderedPair calcNextPos() {
+        Direction relDir = getOutDirection();
+        int x = this.curTrackPosition.getX();
+        int y = this.curTrackPosition.getY();
 
         if (relDir == Direction.UP) {
             y--;
@@ -85,11 +86,10 @@ public class Track implements TrackInterface {
 
     /**
      * gets the direction the track is pointing in
-     * @param trackType enum STRAIGHT, CURVEDLEFT, CURVEDRIGHT
      * @return enum DOWN, UP, LEFT, RIGHT, UPLEFT, UPRIGHT, DOWNLEFT, DOWNRIGHT
      */
-    private Direction getRelativeDirection(TrackType trackType){
-        int index = dirList.indexOf(this.direction);
+    public Direction getOutDirection(){
+        int index = dirList.indexOf(this.inDirection);
         int nextIndex = -1;
 
         if (this.trackType == TrackType.STRAIGHT) {
@@ -107,16 +107,16 @@ public class Track implements TrackInterface {
         return trackType;
     }
 
-    public Direction getDirection() {
-        return direction;
+    public Direction getInDirection() {
+        return inDirection;
     }
 
     public OrderedPair getCurPos() {
-        return curPos;
+        return curTrackPosition;
     }
 
     public OrderedPair getNextPos() {
-        return nextPos;
+        return nextTrackPosition;
     }
 
     public Shape getTrack(){
