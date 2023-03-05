@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/train-track-javafx.iml" filepath="$PROJECT_DIR$/train-track-javafx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/train-track-javafx/train-track-javafx.iml" filepath="$PROJECT_DIR$/train-track-javafx/train-track-javafx.iml" />
     </modules>
   </component>
 </project>
