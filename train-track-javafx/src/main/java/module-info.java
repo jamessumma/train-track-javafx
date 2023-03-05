@@ -13,4 +13,6 @@ module com.example.traintrackjavafx {
     opens wsu.edu.traintrackjavafx.model.enums to javafx.fxml;
     exports wsu.edu.traintrackjavafx.model.interfaces;
     opens wsu.edu.traintrackjavafx.model.interfaces to javafx.fxml;
+    exports wsu.edu.traintrackjavafx.model.tracks;
+    opens wsu.edu.traintrackjavafx.model.tracks to javafx.fxml;
 }
