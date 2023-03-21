@@ -10,6 +10,10 @@ public class GridController {
     private GridPane grid;
     private Track track;
 
+    public GridController(){
+
+    }
+
     public void handleAddObject(int row, int col) {
         AddObjectCommand command = new AddObjectCommand(row, col, track);
         history.executeCommand(command);
