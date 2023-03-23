@@ -5,6 +5,7 @@ module com.example.traintrackjavafx {
 
 
     opens wsu.edu.traintrackjavafx to javafx.fxml;
+    exports wsu.edu.traintrackjavafx.controller;
     exports wsu.edu.traintrackjavafx;
     exports wsu.edu.traintrackjavafx.model;
     exports wsu.edu.traintrackjavafx.tests;

@@ -1,17 +1,37 @@
 package wsu.edu.traintrackjavafx.model;
 
-public class Clicker {
-    Track track;
+import wsu.edu.traintrackjavafx.controller.ApplicationController;
+import wsu.edu.traintrackjavafx.model.enums.Direction;
 
-    public Clicker(){
+public class Clicker {
+    GenericTrack track;
+    boolean snapping = false;
+    Direction direction = Direction.LEFT;
+    ApplicationController controller;
+
+    public Clicker(ApplicationController controller){
+        this.controller = controller;
         this.track = null;
     }
-    public void selectObject(Track track){
+    public void selectObject(GenericTrack track){
         this.track = track;
     }
-    public Track placeObject(){
-        Track tmp = this.track;
+
+    public GenericTrack placeObject(){
+        GenericTrack tmp = this.track;
         this.track = null;
         return tmp;
+    }
+
+    public void setTrack(GenericTrack track) {
+        this.track = track;
+    }
+
+    public void setSnapping(boolean snapping) {
+        this.snapping = snapping;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 }

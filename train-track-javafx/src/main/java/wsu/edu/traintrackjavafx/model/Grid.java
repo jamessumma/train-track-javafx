@@ -1,5 +1,6 @@
 package wsu.edu.traintrackjavafx.model;
 
+import wsu.edu.traintrackjavafx.controller.ApplicationController;
 import wsu.edu.traintrackjavafx.model.interfaces.GridInterface;
 import wsu.edu.traintrackjavafx.model.interfaces.TrackInterface;
 
@@ -12,15 +13,17 @@ public class Grid implements GridInterface {
     private final int COLUMNS = 160;
     private OrderedPair nextPos;
     private List<TrackInterface> tracks;
+    ApplicationController controller;
 
-    public Grid(){
+    public Grid(ApplicationController controller){
+        this.controller = controller;
         this.tracks = new ArrayList<>();
     }
 
 
     // place a track in the grid, make sure it is a valid placement
-    public boolean add(TrackInterface track){
-        OrderedPair op = track.getCurPos();
+    public boolean add(GenericTrack track){
+        OrderedPair op = new OrderedPair(track.getX(), track.getY());
         if (!inBounds(op)){
             return false;
         }
@@ -31,16 +34,19 @@ public class Grid implements GridInterface {
                 return false;
             }
         }
-        tracks.add(track);
+        tracks.add((TrackInterface) track);
         return true;
     }
 
 
-    public boolean remove(TrackInterface track){
-        OrderedPair op = track.getCurPos();
+    public boolean remove(GenericTrack track){
+        OrderedPair op = new OrderedPair(track.getX(), track.getY());
+        if (!inBounds(op)){
+            return false;
+        }
         for (int i = 0; i < tracks.size(); i++) {
             if (op.equals(tracks.get(i).getCurPos())){
-                return false;
+                tracks.remove(i);
             }
         }
         return true;
@@ -49,18 +55,6 @@ public class Grid implements GridInterface {
     // checks if a coordinate is in bounds based on the size of the grid
     private boolean inBounds(OrderedPair op){
         return (op.getX() >= 0 && op.getX() < COLUMNS && op.getY() >= 0 && op.getY() < ROWS);
-    }
-
-    // this effectively removes the track stored at index by shifting everything to the left
-    // starting at the index of the track to be removed
-    private boolean shiftFrom(int index){
-        if (index >= this.tracks.size() || index < 0) return false;
-        for (int i = index; i < tracks.size() - 1; i++) {
-            tracks.set(i, tracks.get(i+1));
-        }
-        // remove the duplicate
-        tracks.remove(tracks.size() - 1);
-        return true;
     }
 
 }
