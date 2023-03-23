@@ -25,7 +25,7 @@ public class MainView {
 
     public MainView(Stage stage, ApplicationController applicationController) {
         this.applicationController = applicationController;
-        this.toolbarView = new ToolbarView();
+        this.toolbarView = new ToolbarView(applicationController);
         this.gridView = new GridView();
 
         root = new BorderPane();

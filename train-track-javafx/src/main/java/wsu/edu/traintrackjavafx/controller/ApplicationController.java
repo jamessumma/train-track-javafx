@@ -43,7 +43,7 @@ public class ApplicationController {
     }
 
     public void setClickerTrackType(TrackType trackType){
-
+        clicker.setTrackType(trackType);
     }
 
 

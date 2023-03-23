@@ -4,7 +4,7 @@ import wsu.edu.traintrackjavafx.model.enums.Direction;
 import wsu.edu.traintrackjavafx.model.enums.TrackType;
 
 // this class is intended to test the basic functionality of adding tracks to the screen
-// and thus, does not have all of the features
+// and thus, does not have all the features
 public class GenericTrack {
     TrackType trackType;
     Direction inDirection;

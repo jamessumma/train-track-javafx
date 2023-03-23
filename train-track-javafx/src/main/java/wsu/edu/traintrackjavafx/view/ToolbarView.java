@@ -9,12 +9,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import wsu.edu.traintrackjavafx.controller.ApplicationController;
 import wsu.edu.traintrackjavafx.controller.GridController;
+import wsu.edu.traintrackjavafx.model.enums.TrackType;
 
 public class ToolbarView {
     private final HBox root;
     private GridController controller;
-
-    public ToolbarView() {
+    private ApplicationController applicationController;
+    public ToolbarView(ApplicationController applicationController) {
+        this.applicationController = applicationController;
         root = new HBox();
         root.setPadding(new Insets(1, 1, 1, 1));
         root.setSpacing(10);
@@ -24,21 +26,25 @@ public class ToolbarView {
         leftTrackButton.setText("Left Curve");
         //rectangleButton.setGraphic(new ImageView(new Image("/images/rectangle.png")));
         leftTrackButton.setOnAction(event -> {
-
+            applicationController.setClickerTrackType(TrackType.CURVELEFT);
+            System.out.println("tracktype set to curve left");
         });
 
         Button straightTrackButton = new Button();
         straightTrackButton.setText("Straight Track");
         //circleButton.setGraphic(new ImageView(new Image("/images/circle.png")));
         straightTrackButton.setOnAction(event -> {
-            // ask the controller to set the clicker to the track associated with the button
+            applicationController.setClickerTrackType(TrackType.STRAIGHT);
+            System.out.println("tracktype set to straight");
+
         });
 
         Button rightTrackButton = new Button();
         rightTrackButton.setText("Right Track");
         //circleButton.setGraphic(new ImageView(new Image("/images/circle.png")));
         rightTrackButton.setOnAction(event -> {
-            // ask the controller to set the clicker to the track associated with the button
+            applicationController.setClickerTrackType(TrackType.CURVERIGHT);
+            System.out.println("tracktype set to curve right");
         });
 
         Button toggleSnapping = new Button();
