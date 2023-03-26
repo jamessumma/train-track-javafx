@@ -2,6 +2,7 @@ package wsu.edu.traintrackjavafx.view;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
@@ -21,29 +22,25 @@ public class StackingGridPane {
     GridPane imageContainer;
     GridPane clickHandler;
 
-    // hashmap where key is x coordinate, value is a hashmap where key is y coordinate
-    // value is the stackpane containing the images
-    HashMap<Integer, HashMap<Integer, ArrayList<StackPane>>> imageTracker;
-    public StackingGridPane(){
+    // 2D array where the first index is the x coordinate, and the second is the y coordinate
+    // each cell in the array will store a list of StackPanes
+    ArrayList<StackPane>[][] imageTracker;
+
+    public StackingGridPane() {
         this.scroller = new ScrollPane();
         this.base = new StackPane();
         this.imageContainer = new GridPane();
         this.clickHandler = new GridPane();
+        this.imageTracker = new ArrayList[159][90]; // create a 2D array with the same dimensions as the grid
+
         scroller.setContent(base);
         base.getChildren().add(imageContainer);
         base.getChildren().add(clickHandler);
+        initializeGrids();
     }
-    private void initializeGrids(){
-        imageContainer.setPadding(new Insets(10, 10, 10, 10));
-        imageContainer.setHgap(0);
-        imageContainer.setVgap(0);
-        imageContainer.setAlignment(Pos.CENTER);
 
-        clickHandler.setPadding(new Insets(10, 10, 10, 10));
-        clickHandler.setHgap(0);
-        clickHandler.setVgap(0);
-        clickHandler.setAlignment(Pos.CENTER);
-
+    private void initializeGrids() {
+        // set up the imageContainer and clickHandler GridPanes
 
         // Create a 10x10 grid of rectangles as placeholders for the shapes
         // i is columns, j is rows
@@ -60,15 +57,29 @@ public class StackingGridPane {
                 imageContainer.add(gridContainer, col, row);
                 clickGrid.setOnMouseClicked(event -> {
                     System.out.println("grid " +"row " + row + " col " + col);
-                    gridContainer.getChildren().add(new Rectangle(5, 5, Color.BLUE));
-                    //GenericTrack newTrack = new GenericTrack(TrackType.STRAIGHT, Direction.LEFT, row, col);
-                    //addTrack(newTrack);
+                    clickGrid.setOpacity(0);
+                    StackPane stackPane = new StackPane();
+                    stackPane.getChildren().add(new Rectangle(5, 5, Color.BLUE));
+                    imageContainer.add(stackPane, col, row);
+
+                    if (imageTracker[col][row] == null) {
+                        imageTracker[col][row] = new ArrayList<>();
+                    }
+                    imageTracker[col][row].add(stackPane);
                 });
             }
         }
     }
 
+    public void addTrack(GenericTrack track){
+
+    }
+
     private void addImageHandler(){
 
+    }
+
+    public Node getNode() {
+        return this.scroller;
     }
 }

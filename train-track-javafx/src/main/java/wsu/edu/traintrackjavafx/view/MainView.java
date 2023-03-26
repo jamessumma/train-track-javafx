@@ -20,6 +20,7 @@ public class MainView {
     private final BorderPane root;
     private final ToolbarView toolbarView;
     private final GridView gridView;
+    private final StackingGridPane stackingGridPane;
 
     private final ApplicationController applicationController;
 
@@ -27,11 +28,12 @@ public class MainView {
         this.applicationController = applicationController;
         this.toolbarView = new ToolbarView(applicationController);
         this.gridView = new GridView();
+        this.stackingGridPane = new StackingGridPane();
 
         root = new BorderPane();
         root.setTop(titleBuilder());
         root.setBottom(toolbarView.getNode());
-        root.setCenter(gridView.getNode());
+        root.setCenter(stackingGridPane.getNode());
 
         scene = new Scene(root, 880, 600);
         this.stage = stage;
