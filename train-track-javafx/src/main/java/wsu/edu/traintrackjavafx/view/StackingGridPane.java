@@ -9,6 +9,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import wsu.edu.traintrackjavafx.model.GenericTrack;
+import wsu.edu.traintrackjavafx.model.OrderedPair;
+import wsu.edu.traintrackjavafx.model.Track;
+import wsu.edu.traintrackjavafx.model.enums.Direction;
+import wsu.edu.traintrackjavafx.model.enums.TrackType;
 
 import java.util.ArrayList;
 
@@ -19,6 +23,7 @@ public class StackingGridPane {
     private static final int GRID_DIMENSIONS = 9;
     private static final int COL_SPAN = 3;
     private static final int ROW_SPAN = 3;
+    private static final ImageLogic imageLogic = new ImageLogic();
     ScrollPane scroller;
     StackPane base;
     GridPane backGround;
@@ -45,7 +50,6 @@ public class StackingGridPane {
         this.imageContainer.setVgap(1);
         this.clickHandler.setHgap(1);
         this.clickHandler.setVgap(1);
-
          */
         // create a 2D array with the same dimensions as the grid
         this.imageTracker = new StackPane[GRID_WIDTH][GRID_HEIGHT];
@@ -103,14 +107,27 @@ public class StackingGridPane {
     }
 
 
+    public void addTrack(Track track){
+        OrderedPair op = track.getCurPos();
+        StackPane stackPane;
+        int col = op.getX();
+        int row = op.getY();
+        if (imageTracker[col][row] == null) {
+            imageTracker[col][row] = new StackPane();
+            stackPane = imageTracker[col][row];
+            GridPane.setColumnSpan(stackPane, COL_SPAN);
+            GridPane.setRowSpan(stackPane, ROW_SPAN);
+        }
+        stackPane = imageTracker[col][row];
 
-    public void addTrack(GenericTrack track, int col, int row){
-
+        ImageView imageView = imageLogic.getTrackImage(track);
+        imageView.setFitWidth(GRID_DIMENSIONS * COL_SPAN);
+        imageView.setFitHeight(GRID_DIMENSIONS * COL_SPAN);
+        stackPane.getChildren().add(imageView);
+        imageContainer.add(stackPane, col-1, row-1);
     }
 
-    private ImageView getImage(GenericTrack track){
-        return new ImageView();
-    }
+
 
     private void addImageHandler(){
 

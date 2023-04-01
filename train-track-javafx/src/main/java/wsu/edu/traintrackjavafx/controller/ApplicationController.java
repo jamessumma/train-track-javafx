@@ -5,6 +5,7 @@ import javafx.stage.Stage;
 import wsu.edu.traintrackjavafx.model.Clicker;
 import wsu.edu.traintrackjavafx.model.GenericTrack;
 import wsu.edu.traintrackjavafx.model.Grid;
+import wsu.edu.traintrackjavafx.model.Track;
 import wsu.edu.traintrackjavafx.model.enums.TrackType;
 import wsu.edu.traintrackjavafx.view.MainView;
 
@@ -25,21 +26,17 @@ public class ApplicationController {
     public void start() throws IOException {
         mainView.show();
     }
-
-    public void addViewTrack(GenericTrack genericTrack){
-        mainView.addTrack(genericTrack);
+    public void addTrack(TrackType trackType){
+        System.out.println("add track called");
+        if (grid.appendTrack(trackType)){
+            mainView.addTrack(grid.getRecentTrack());
+        } else {
+            System.out.println("unable to add track");
+        }
     }
 
-    public void removeViewTrack(GenericTrack genericTrack){
-        mainView.removeTrack(genericTrack);
-    }
+    public void removeTrack(Track track){
 
-    public void addModelTrack(GenericTrack genericTrack){
-        grid.add(genericTrack);
-    }
-
-    public void removeModelTrack(GenericTrack genericTrack){
-        grid.remove(genericTrack);
     }
 
     public void setClickerTrackType(TrackType trackType){

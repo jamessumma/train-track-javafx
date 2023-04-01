@@ -12,6 +12,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import wsu.edu.traintrackjavafx.controller.ApplicationController;
 import wsu.edu.traintrackjavafx.model.GenericTrack;
+import wsu.edu.traintrackjavafx.model.Track;
 import wsu.edu.traintrackjavafx.model.enums.TrackType;
 
 public class MainView {
@@ -55,8 +56,8 @@ public class MainView {
         titleSpace.setPadding(new Insets(20, 10, 10, 10));
         return titleSpace;
     }
-    public boolean addTrack(GenericTrack genericTrack){
-
+    public boolean addTrack(Track track){
+        stackingGridPane.addTrack(track);
         return true;
     }
 

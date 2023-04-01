@@ -28,6 +28,7 @@ public class ToolbarView {
         leftTrackButton.setOnAction(event -> {
             applicationController.setClickerTrackType(TrackType.CURVELEFT);
             System.out.println("tracktype set to curve left");
+            applicationController.addTrack(TrackType.CURVELEFT);
         });
 
         Button straightTrackButton = new Button();
@@ -36,7 +37,7 @@ public class ToolbarView {
         straightTrackButton.setOnAction(event -> {
             applicationController.setClickerTrackType(TrackType.STRAIGHT);
             System.out.println("tracktype set to straight");
-
+            applicationController.addTrack(TrackType.STRAIGHT);
         });
 
         Button rightTrackButton = new Button();
@@ -45,6 +46,7 @@ public class ToolbarView {
         rightTrackButton.setOnAction(event -> {
             applicationController.setClickerTrackType(TrackType.CURVERIGHT);
             System.out.println("tracktype set to curve right");
+            applicationController.addTrack(TrackType.CURVERIGHT);
         });
 
         Button toggleSnapping = new Button();
