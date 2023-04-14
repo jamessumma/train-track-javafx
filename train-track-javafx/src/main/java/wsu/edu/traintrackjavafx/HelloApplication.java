@@ -24,6 +24,7 @@ public class HelloApplication extends Application {
         MainView mainView = new MainView(stage);
         mainView.show();
          */
+
         ApplicationController applicationController = new ApplicationController(stage);
         applicationController.start();
     }

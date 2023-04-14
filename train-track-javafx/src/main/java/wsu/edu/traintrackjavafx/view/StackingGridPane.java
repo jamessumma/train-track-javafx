@@ -43,14 +43,7 @@ public class StackingGridPane {
         this.backGround = new GridPane();
         this.imageContainer = new GridPane();
         this.clickHandler = new GridPane();
-        /*
-        this.backGround.setHgap(1);
-        this.backGround.setVgap(1);
-        this.imageContainer.setHgap(1);
-        this.imageContainer.setVgap(1);
-        this.clickHandler.setHgap(1);
-        this.clickHandler.setVgap(1);
-         */
+
         // create a 2D array with the same dimensions as the grid
         this.imageTracker = new StackPane[GRID_WIDTH][GRID_HEIGHT];
 
@@ -81,7 +74,7 @@ public class StackingGridPane {
 
                 clickDetector.setOnMouseClicked(event -> {
                     System.out.println("grid " +"row " + row + " col " + col);
-
+                    /*
                     StackPane stackPane = new StackPane();
                     GridPane.setColumnSpan(stackPane, COL_SPAN);
                     GridPane.setRowSpan(stackPane, ROW_SPAN);
@@ -97,6 +90,8 @@ public class StackingGridPane {
                     if (imageTracker[col][row] == null) {
                         imageTracker[col][row] = stackPane;
                     }
+
+                     */
                 });
             }
         }
@@ -117,15 +112,24 @@ public class StackingGridPane {
             stackPane = imageTracker[col][row];
             GridPane.setColumnSpan(stackPane, COL_SPAN);
             GridPane.setRowSpan(stackPane, ROW_SPAN);
+            imageContainer.add(stackPane, col-1, row-1);
         }
         stackPane = imageTracker[col][row];
-
         ImageView imageView = imageLogic.getTrackImage(track);
         imageView.setFitWidth(GRID_DIMENSIONS * COL_SPAN);
         imageView.setFitHeight(GRID_DIMENSIONS * COL_SPAN);
         stackPane.getChildren().add(imageView);
-        imageContainer.add(stackPane, col-1, row-1);
     }
+
+    public void removeRecentTrack(Track track){
+        OrderedPair op = track.getCurPos();
+        int col = op.getX();
+        int row = op.getY();
+        StackPane stackPane = imageTracker[col][row];
+        stackPane.getChildren().remove(stackPane.getChildren().size()-1);
+    }
+
+
 
 
 

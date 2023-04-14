@@ -19,12 +19,22 @@ public class Grid implements GridInterface {
     private OrderedPair nextPos;
     private List<Track> tracks;
     ApplicationController controller;
+    String currentConfiguration;
 
     public Grid(ApplicationController controller){
         this.controller = controller;
         this.tracks = new ArrayList<>();
+        this.currentConfiguration = "";
     }
 
+    public OrderedPair getNextPos() {
+        if (tracks.size() <= 0){
+            return new OrderedPair(START_X, START_Y);
+        } else {
+            nextPos = tracks.get(tracks.size() - 1).getNextPos();
+        }
+        return nextPos;
+    }
 
     // place a track in the grid, make sure it is a valid placement
     public boolean appendTrack(TrackType trackType){
@@ -42,7 +52,46 @@ public class Grid implements GridInterface {
             return false;
         }
         tracks.add(track);
+        if (trackType == TrackType.STRAIGHT){
+            this.currentConfiguration += "S";
+        } else if (trackType == TrackType.CURVELEFT){
+            this.currentConfiguration += "L";
+        } else {
+            this.currentConfiguration += "R";
+        }
         return true;
+    }
+
+    public void removeRecent(){
+        if (tracks.size() >= 1){
+            String newConfig = "";
+            for (int i = 0; i < currentConfiguration.length()-1; i++) {
+                newConfig += currentConfiguration.charAt(i);
+            }
+            tracks.remove(tracks.size() - 1);
+            this.currentConfiguration = newConfig;
+        }
+    }
+
+    public String getCurrentConfiguration(){
+        return currentConfiguration;
+    }
+
+
+    public void editConfiguration(String s){
+        while (!tracks.isEmpty()){
+            tracks.remove(0);
+        }
+        for (int i = 0; i < s.length(); i++) {
+            char cur = s.charAt(i);
+            if (cur == 'L'){
+                appendTrack(TrackType.CURVELEFT);
+            } else if (cur == 'S'){
+                appendTrack(TrackType.STRAIGHT);
+            } else if (cur == 'R'){
+                appendTrack(TrackType.CURVERIGHT);
+            }
+        }
     }
 
 

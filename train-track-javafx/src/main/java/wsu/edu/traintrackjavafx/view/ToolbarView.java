@@ -4,9 +4,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import wsu.edu.traintrackjavafx.controller.ApplicationController;
 import wsu.edu.traintrackjavafx.controller.GridController;
 import wsu.edu.traintrackjavafx.model.enums.TrackType;
@@ -60,6 +63,7 @@ public class ToolbarView {
         undo.setText("Undo");
         //circleButton.setGraphic(new ImageView(new Image("/images/circle.png")));
         undo.setOnAction(event -> {
+            applicationController.undo();
             // ask the controller to set the clicker to the track associated with the button
         });
 
@@ -67,11 +71,24 @@ public class ToolbarView {
         redo.setText("Redo");
         //circleButton.setGraphic(new ImageView(new Image("/images/circle.png")));
         redo.setOnAction(event -> {
+            applicationController.redo();
             // ask the controller to set the clicker to the track associated with the button
         });
 
 
-        root.getChildren().addAll(leftTrackButton, straightTrackButton, rightTrackButton, toggleSnapping, undo, redo);
+        VBox configArea = new VBox();
+        Text text = new Text();
+        text.setText("Track Configuration");
+        TextField editConfiguration = new TextField();
+        Button editConfigButton = new Button();
+        editConfigButton.setOnAction(event -> {
+            String config = editConfiguration.getText();
+            System.out.println(config);
+        });
+        editConfigButton.setText("Edit Track Configuration");
+        configArea.getChildren().addAll(text, editConfiguration, editConfigButton);
+
+        root.getChildren().addAll(leftTrackButton, straightTrackButton, rightTrackButton, toggleSnapping, undo, redo, configArea);
     }
 
     public Node getNode() {

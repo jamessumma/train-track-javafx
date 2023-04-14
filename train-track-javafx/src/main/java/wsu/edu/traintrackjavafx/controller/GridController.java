@@ -11,12 +11,12 @@ public class GridController {
     private Track track;
 
     public GridController(){
-        this.history = new CommandHistory();
+        //this.history = new CommandHistory();
     }
 
     public void handleAddObject(int row, int col) {
-        AddObjectCommand command = new AddObjectCommand(row, col, track, grid);
-        history.executeCommand(command);
+        //AddObjectCommand command = new AddObjectCommand(row, col, track, grid);
+        //history.executeCommand(command);
     }
 
     public void handleUndo() {

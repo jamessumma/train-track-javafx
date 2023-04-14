@@ -61,9 +61,17 @@ public class MainView {
         return true;
     }
 
-    public boolean removeTrack(GenericTrack genericTrack){
-
+    public boolean removeTrack(Track track){
+        stackingGridPane.removeRecentTrack(track);
         return true;
+    }
+
+    public void editConfiguration(String s){
+
+    }
+
+    public StackingGridPane getStackingGridPane(){
+        return this.stackingGridPane;
     }
     public void show() {
         stage.show();

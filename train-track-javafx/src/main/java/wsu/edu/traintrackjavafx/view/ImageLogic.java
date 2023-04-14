@@ -8,7 +8,7 @@ import wsu.edu.traintrackjavafx.model.enums.Direction;
 import wsu.edu.traintrackjavafx.model.enums.TrackType;
 
 public class ImageLogic {
-
+// javafx arc for images
     public ImageLogic(){
 
     }
