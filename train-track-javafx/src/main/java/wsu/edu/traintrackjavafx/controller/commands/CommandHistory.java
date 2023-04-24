@@ -1,41 +1,59 @@
 package wsu.edu.traintrackjavafx.controller.commands;
 
 import wsu.edu.traintrackjavafx.controller.commands.Command;
+import wsu.edu.traintrackjavafx.model.Grid;
+import wsu.edu.traintrackjavafx.view.MainView;
+import wsu.edu.traintrackjavafx.view.StackingGridPane;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class CommandHistory {
     private List<Command> commands = new ArrayList<>();
-    private int position = -1;
+
+    Stack<Command> done;
+    Stack<Command> undone;
+    Grid grid;
+    StackingGridPane pane;
+
+    public CommandHistory(){
+        this.done = new Stack<>();
+        this.undone = new Stack<>();
+    }
 
     public void executeCommand(Command command) {
         command.execute();
-        commands.subList(position + 1, commands.size()).clear();
-        commands.add(command);
-        position++;
-    }
-
-    public boolean canUndo() {
-        return position >= 0;
+        this.done.add(command);
     }
 
     public void undo() {
-        if (canUndo()) {
-            commands.get(position).undo();
-            position--;
+        if (done.peek() != null){
+            Command command = done.pop();
+            command.undo();
+            this.undone.add(command);
         }
-    }
-
-    public boolean canRedo() {
-        return position < commands.size() - 1;
     }
 
     public void redo() {
-        if (canRedo()) {
-            commands.get(position + 1).execute();
-            position++;
+        if (undone.peek() != null){
+            Command command = undone.pop();
+            command.execute();
+            done.add(command);
         }
+    }
+
+    public void undoAll(){
+        while (!done.isEmpty()){
+            Command command = done.pop();
+            command.undo();
+            undone.push(command);
+        }
+    }
+
+    public void clearHistory(){
+        undoAll();
+        undone = new Stack<>();
     }
 }
 

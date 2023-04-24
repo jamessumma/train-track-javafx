@@ -14,7 +14,6 @@ public class Track implements TrackInterface {
 
     TrackType trackType;
     Direction inDirection;
-    Direction outDirection;
     OrderedPair curTrackPosition;
     OrderedPair nextTrackPosition;
     ArrayList<Direction> dirList;
@@ -60,6 +59,35 @@ public class Track implements TrackInterface {
         int y = this.curTrackPosition.getY();
 
         if (relDir == Direction.UP) {
+            y-=3;
+        } else if (relDir == Direction.UPRIGHT) {
+            x+=3;
+            y-=3;
+        } else if (relDir == Direction.RIGHT) {
+            x+=3;
+        } else if (relDir == Direction.DOWNRIGHT) {
+            x+=3;
+            y+=3;
+        } else if (relDir == Direction.DOWN) {
+            y+=3;
+        } else if (relDir == Direction.DOWNLEFT) {
+            x-=3;
+            y+=3;
+        } else if (relDir == Direction.LEFT) {
+            x-=3;
+        } else if (relDir == Direction.UPLEFT) {
+            x-=3;
+            y-=3;
+        }
+        return new OrderedPair(x, y);
+    }
+    /*
+    private OrderedPair calcNextPos() {
+        Direction relDir = getOutDirection();
+        int x = this.curTrackPosition.getX();
+        int y = this.curTrackPosition.getY();
+
+        if (relDir == Direction.UP) {
             y--;
         } else if (relDir == Direction.UPRIGHT) {
             x++;
@@ -82,6 +110,8 @@ public class Track implements TrackInterface {
         }
         return new OrderedPair(x, y);
     }
+
+     */
 
 
     /**
