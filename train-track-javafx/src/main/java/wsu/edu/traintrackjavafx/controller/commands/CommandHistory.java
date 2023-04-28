@@ -14,8 +14,6 @@ public class CommandHistory {
 
     Stack<Command> done;
     Stack<Command> undone;
-    Grid grid;
-    StackingGridPane pane;
 
     public CommandHistory(){
         this.done = new Stack<>();
