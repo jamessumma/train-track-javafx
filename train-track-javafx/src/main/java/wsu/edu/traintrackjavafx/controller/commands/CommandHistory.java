@@ -28,6 +28,9 @@ public class CommandHistory {
     }
 
     public void undo() {
+        if (done.isEmpty()){
+            return;
+        }
         if (done.peek() != null){
             Command command = done.pop();
             command.undo();
@@ -36,6 +39,9 @@ public class CommandHistory {
     }
 
     public void redo() {
+        if (undone.isEmpty()){
+            return;
+        }
         if (undone.peek() != null){
             Command command = undone.pop();
             command.execute();
