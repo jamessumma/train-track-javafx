@@ -18,7 +18,7 @@ public class Grid implements GridInterface {
     private final int START_Y = 28;
     private OrderedPair nextPos;
     private OrderedPair startPos;
-    private List<Track> tracks;
+    private ArrayList<Track> tracks;
     ApplicationController controller;
     String currentConfiguration;
 
@@ -126,6 +126,10 @@ public class Grid implements GridInterface {
 
     public Track getRecentTrack(){
         return tracks.get(tracks.size()-1);
+    }
+
+    public ArrayList<Track> getTracks(){
+        return this.tracks;
     }
 
 }

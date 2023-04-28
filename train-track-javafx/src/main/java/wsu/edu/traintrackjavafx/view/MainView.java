@@ -22,7 +22,6 @@ public class MainView {
     private final Scene scene;
     private final BorderPane root;
     private final ToolbarView toolbarView;
-    private final GridView gridView;
     private final StackingGridPane stackingGridPane;
 
 
@@ -32,7 +31,6 @@ public class MainView {
     public MainView(Stage stage, ApplicationController applicationController) {
         this.applicationController = applicationController;
         this.toolbarView = new ToolbarView(applicationController);
-        this.gridView = new GridView();
         this.stackingGridPane = new StackingGridPane();
 
         root = new BorderPane();
@@ -43,9 +41,6 @@ public class MainView {
         scene = new Scene(root, 880, 600);
         this.stage = stage;
         stage.setScene(scene);
-    }
-    public GridView getGridView(){
-        return this.gridView;
     }
     public ToolbarView getToolbarView(){
         return this.toolbarView;
@@ -70,8 +65,9 @@ public class MainView {
         return true;
     }
 
-    public void editConfiguration(String s){
-
+    public void editConfiguration(ArrayList<Track> tracks){
+        stackingGridPane.removeAll();
+        stackingGridPane.addAll(tracks);
     }
 
     public StackingGridPane getStackingGridPane(){
