@@ -45,9 +45,11 @@ public class ApplicationController {
 
     public void undo(){
         commandHistory.undo();
+        updateConfigText();
     }
     public void redo(){
         commandHistory.redo();
+        updateConfigText();
     }
 
     public void editConfiguration(String s){
