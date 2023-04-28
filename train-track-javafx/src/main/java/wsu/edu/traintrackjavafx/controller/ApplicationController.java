@@ -36,6 +36,7 @@ public class ApplicationController {
         commandHistory.clearRedo();
         commandHistory.executeCommand(aoc);
         System.out.println("add track called");
+        updateConfigText();
     }
 
     public void clearAll(){
@@ -50,13 +51,22 @@ public class ApplicationController {
     }
 
     public void editConfiguration(String s){
+        if (s.compareTo(grid.getCurrentConfiguration()) == 0){
+            return;
+        }
         EditConfigurationCommand ecc = new EditConfigurationCommand(s, this.grid, this.mainView);
         commandHistory.clearRedo();
         commandHistory.executeCommand(ecc);
+        updateConfigText();
     }
 
     public void removeTrack(Track track){
 
+    }
+
+    public void updateConfigText(){
+        String text = grid.getCurrentConfiguration();
+        mainView.updateConfigText(text);
     }
 
     public void setClickerTrackType(TrackType trackType){

@@ -18,6 +18,7 @@ public class ToolbarView {
     private final HBox root;
     private GridController controller;
     private ApplicationController applicationController;
+    TextField editConfiguration;
     public ToolbarView(ApplicationController applicationController) {
         this.applicationController = applicationController;
         root = new HBox();
@@ -87,7 +88,7 @@ public class ToolbarView {
         VBox configArea = new VBox();
         Text text = new Text();
         text.setText("Track Configuration");
-        TextField editConfiguration = new TextField();
+        this.editConfiguration = new TextField();
         Button editConfigButton = new Button();
         editConfigButton.setOnAction(event -> {
             String config = editConfiguration.getText();
@@ -98,6 +99,10 @@ public class ToolbarView {
         configArea.getChildren().addAll(text, editConfiguration, editConfigButton);
 
         root.getChildren().addAll(leftTrackButton, straightTrackButton, rightTrackButton, toggleSnapping, undo, redo, configArea);
+    }
+
+    public void updateConfigText(String s){
+        this.editConfiguration.setText(s);
     }
 
     public Node getNode() {

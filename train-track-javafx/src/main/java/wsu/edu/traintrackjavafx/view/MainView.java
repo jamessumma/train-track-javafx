@@ -70,6 +70,10 @@ public class MainView {
         stackingGridPane.addAll(tracks);
     }
 
+    public void updateConfigText(String s){
+        toolbarView.updateConfigText(s);
+    }
+
     public StackingGridPane getStackingGridPane(){
         return this.stackingGridPane;
     }

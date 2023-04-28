@@ -30,10 +30,6 @@ public class AddObjectCommand implements Command {
         grid.appendTrack(this.trackType);
         this.track = grid.getRecentTrack();
         mainView.addTrack(this.track);
-        //pane.addTrack(this.track);
-        //grid.appendTrack(track.getTrackType());
-        // Add the object of the specified track to the grid at the specified cell
-        // ...
     }
 
     @Override
@@ -42,8 +38,6 @@ public class AddObjectCommand implements Command {
             mainView.removeTrack(this.track);
             grid.removeRecent();
         }
-        // Remove the object from the grid at the specified cell
-        // ...
     }
 }
 
