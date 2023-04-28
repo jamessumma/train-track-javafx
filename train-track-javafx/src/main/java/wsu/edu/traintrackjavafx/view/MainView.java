@@ -15,6 +15,8 @@ import wsu.edu.traintrackjavafx.model.GenericTrack;
 import wsu.edu.traintrackjavafx.model.Track;
 import wsu.edu.traintrackjavafx.model.enums.TrackType;
 
+import java.util.ArrayList;
+
 public class MainView {
     private final Stage stage;
     private final Scene scene;
@@ -22,6 +24,8 @@ public class MainView {
     private final ToolbarView toolbarView;
     private final GridView gridView;
     private final StackingGridPane stackingGridPane;
+
+
 
     private final ApplicationController applicationController;
 

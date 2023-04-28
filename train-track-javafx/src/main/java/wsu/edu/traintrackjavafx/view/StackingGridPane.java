@@ -35,7 +35,7 @@ public class StackingGridPane {
     //ArrayList<StackPane>[][] imageTracker;
     StackPane[][] imageTracker;
 
-    ArrayList<ImageView> tracks;
+    ArrayList<StackPane> imageContainers;
 
     public StackingGridPane() {
         this.scroller = new ScrollPane();
@@ -43,7 +43,7 @@ public class StackingGridPane {
         this.backGround = new GridPane();
         this.imageContainer = new GridPane();
         this.clickHandler = new GridPane();
-
+        this.imageContainers = new ArrayList<>();
         // create a 2D array with the same dimensions as the grid
         this.imageTracker = new StackPane[GRID_WIDTH][GRID_HEIGHT];
 
@@ -110,6 +110,7 @@ public class StackingGridPane {
         if (imageTracker[col][row] == null) {
             imageTracker[col][row] = new StackPane();
             stackPane = imageTracker[col][row];
+            imageContainers.add(stackPane);
             GridPane.setColumnSpan(stackPane, COL_SPAN);
             GridPane.setRowSpan(stackPane, ROW_SPAN);
             imageContainer.add(stackPane, col-1, row-1);
@@ -127,6 +128,17 @@ public class StackingGridPane {
         int row = op.getY();
         StackPane stackPane = imageTracker[col][row];
         stackPane.getChildren().remove(stackPane.getChildren().size()-1);
+    }
+
+    public void removeAll(){
+        for (int i = 0; i < imageContainers.size(); i++) {
+            imageContainers.get(i).getChildren().removeAll();
+        }
+    }
+    public void addAll(ArrayList<Track> newConfig){
+        for (int i = 0; i < newConfig.size(); i++) {
+            addTrack(newConfig.get(i));
+        }
     }
 
 

@@ -34,14 +34,10 @@ public class ApplicationController {
         AddObjectCommand aoc = new AddObjectCommand(trackType, this.grid, this.mainView);
         commandHistory.executeCommand(aoc);
         System.out.println("add track called");
-        /*
-        if (grid.appendTrack(trackType)){
-            mainView.addTrack(grid.getRecentTrack());
-        } else {
-            System.out.println("unable to add track");
-        }
+    }
 
-         */
+    public void clearAll(){
+
     }
 
     public void undo(){

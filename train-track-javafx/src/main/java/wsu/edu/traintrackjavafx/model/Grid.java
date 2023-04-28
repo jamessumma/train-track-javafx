@@ -17,6 +17,7 @@ public class Grid implements GridInterface {
     private final int START_X = 53;
     private final int START_Y = 28;
     private OrderedPair nextPos;
+    private OrderedPair startPos;
     private List<Track> tracks;
     ApplicationController controller;
     String currentConfiguration;
@@ -25,6 +26,7 @@ public class Grid implements GridInterface {
         this.controller = controller;
         this.tracks = new ArrayList<>();
         this.currentConfiguration = "";
+        this.startPos = new OrderedPair(START_X, START_Y);
     }
 
     public OrderedPair getNextPos() {
@@ -59,6 +61,7 @@ public class Grid implements GridInterface {
         } else {
             this.currentConfiguration += "R";
         }
+        System.out.println(currentConfiguration);
         return true;
     }
 
@@ -82,6 +85,7 @@ public class Grid implements GridInterface {
         while (!tracks.isEmpty()){
             tracks.remove(0);
         }
+        this.currentConfiguration = s;
         for (int i = 0; i < s.length(); i++) {
             char cur = s.charAt(i);
             if (cur == 'L'){
@@ -91,6 +95,12 @@ public class Grid implements GridInterface {
             } else if (cur == 'R'){
                 appendTrack(TrackType.CURVERIGHT);
             }
+        }
+    }
+    public void removeAll(){
+        this.currentConfiguration = "";
+        while (!tracks.isEmpty()){
+            tracks.remove(0);
         }
     }
 

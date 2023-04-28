@@ -75,6 +75,14 @@ public class ToolbarView {
             // ask the controller to set the clicker to the track associated with the button
         });
 
+        Button clear = new Button();
+        redo.setText("Clear");
+        //circleButton.setGraphic(new ImageView(new Image("/images/circle.png")));
+        redo.setOnAction(event -> {
+            applicationController.redo();
+            // ask the controller to set the clicker to the track associated with the button
+        });
+
 
         VBox configArea = new VBox();
         Text text = new Text();
