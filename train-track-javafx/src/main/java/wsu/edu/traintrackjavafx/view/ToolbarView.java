@@ -76,9 +76,9 @@ public class ToolbarView {
         });
 
         Button clear = new Button();
-        redo.setText("Clear");
+        clear.setText("Clear");
         //circleButton.setGraphic(new ImageView(new Image("/images/circle.png")));
-        redo.setOnAction(event -> {
+        clear.setOnAction(event -> {
             applicationController.redo();
             // ask the controller to set the clicker to the track associated with the button
         });
@@ -91,6 +91,7 @@ public class ToolbarView {
         Button editConfigButton = new Button();
         editConfigButton.setOnAction(event -> {
             String config = editConfiguration.getText();
+            applicationController.editConfiguration(config);
             System.out.println(config);
         });
         editConfigButton.setText("Edit Track Configuration");

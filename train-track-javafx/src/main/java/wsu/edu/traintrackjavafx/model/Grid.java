@@ -85,7 +85,7 @@ public class Grid implements GridInterface {
         while (!tracks.isEmpty()){
             tracks.remove(0);
         }
-        this.currentConfiguration = s;
+        this.currentConfiguration = "";
         for (int i = 0; i < s.length(); i++) {
             char cur = s.charAt(i);
             if (cur == 'L'){

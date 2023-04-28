@@ -132,7 +132,8 @@ public class StackingGridPane {
 
     public void removeAll(){
         for (int i = 0; i < imageContainers.size(); i++) {
-            imageContainers.get(i).getChildren().removeAll();
+            imageContainers.get(i).getChildren().clear();
+            //imageContainers.get(i).getChildren().removeAll();
         }
     }
     public void addAll(ArrayList<Track> newConfig){
@@ -140,8 +141,6 @@ public class StackingGridPane {
             addTrack(newConfig.get(i));
         }
     }
-
-
 
 
 

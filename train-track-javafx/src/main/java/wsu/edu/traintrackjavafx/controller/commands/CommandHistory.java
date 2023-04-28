@@ -61,5 +61,9 @@ public class CommandHistory {
         undoAll();
         undone = new Stack<>();
     }
+    public void clearRedo(){
+        this.undone = new Stack<>();
+    }
+
 }
 
