@@ -7,6 +7,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Rectangle;
 import wsu.edu.traintrackjavafx.model.GenericTrack;
 import wsu.edu.traintrackjavafx.model.OrderedPair;
@@ -116,10 +118,36 @@ public class StackingGridPane {
             imageContainer.add(stackPane, col-1, row-1);
         }
         stackPane = imageTracker[col][row];
-        ImageView imageView = imageLogic.getTrackImage(track);
-        imageView.setFitWidth(GRID_DIMENSIONS * COL_SPAN);
-        imageView.setFitHeight(GRID_DIMENSIONS * COL_SPAN);
-        stackPane.getChildren().add(imageView);
+
+        if (track.getTrackType() == TrackType.STRAIGHT){
+            stackPane.getChildren().add(imageLogic.getTrackImage(track));
+        } else {
+            Arc arc = ArcLogic.getTrackArc(track, stackPane,GRID_DIMENSIONS);
+            stackPane.getChildren().add(arc);
+            if (track.getInDirection() == Direction.LEFT){
+                arc.setCenterY(100);
+                arc.setCenterX(100);
+            }
+        }
+
+         /*
+        double height = stackPane.getHeight();
+        double centerX = 0.0;
+        double startAngle = 45.0;
+        double length = 45.0;
+        Arc arc = new Arc(centerX, height, GRID_DIMENSIONS * 4, GRID_DIMENSIONS * 4, startAngle, length);
+        arc.setType(ArcType.OPEN);
+        arc.setFill(null);
+        arc.setStroke(Color.BLACK);
+        arc.setStrokeWidth(3);
+        stackPane.getChildren().add(arc);
+
+          */
+
+        //ImageView imageView = imageLogic.getTrackImage(track);
+        //imageView.setFitWidth(GRID_DIMENSIONS * COL_SPAN);
+        //imageView.setFitHeight(GRID_DIMENSIONS * COL_SPAN);
+        //stackPane.getChildren().add(imageView);
     }
 
     public void removeRecentTrack(Track track){
