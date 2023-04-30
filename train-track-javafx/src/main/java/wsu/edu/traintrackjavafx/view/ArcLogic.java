@@ -84,7 +84,7 @@ public class ArcLogic {
         double centerX = 0.0;
         double startAngle = 45.0;
         double length = 45.0;
-        Arc arc = new Arc(centerX, height, GRID_DIMENSIONS * 4, GRID_DIMENSIONS * 4, startAngle, length);
+        Arc arc = new Arc(centerX, height, GRID_DIMENSIONS * 4 - 3, GRID_DIMENSIONS * 4 - 3, startAngle, length);
         arc.setType(ArcType.OPEN);
         arc.setFill(null);
         arc.setStroke(Color.BLACK);
@@ -97,7 +97,7 @@ public class ArcLogic {
         double centerX = 0.0;
         double startAngle = 0.0;
         double length = 45.0;
-        Arc arc = new Arc(centerX, height, GRID_DIMENSIONS * 4, GRID_DIMENSIONS * 4, startAngle, length);
+        Arc arc = new Arc(centerX, height, GRID_DIMENSIONS * 4 - 3, GRID_DIMENSIONS * 4 - 3, startAngle, length);
         arc.setType(ArcType.OPEN);
         arc.setFill(null);
         arc.setStroke(Color.BLACK);
@@ -109,7 +109,7 @@ public class ArcLogic {
         double centerX = 0.0;
         double startAngle = 90.0;
         double length = 45.0;
-        Arc arc = new Arc(9, 9, 28, 28, startAngle, length);
+        Arc arc = new Arc(centerX, height, GRID_DIMENSIONS * 4 - 3, GRID_DIMENSIONS * 4 - 3, startAngle, length);
         arc.setType(ArcType.OPEN);
         arc.setFill(null);
         arc.setStroke(Color.BLACK);

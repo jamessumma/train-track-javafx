@@ -115,6 +115,7 @@ public class StackingGridPane {
             imageContainers.add(stackPane);
             GridPane.setColumnSpan(stackPane, COL_SPAN);
             GridPane.setRowSpan(stackPane, ROW_SPAN);
+            stackPane.setPrefSize(27,27);
             imageContainer.add(stackPane, col-1, row-1);
         }
         stackPane = imageTracker[col][row];
@@ -124,10 +125,7 @@ public class StackingGridPane {
         } else {
             Arc arc = ArcLogic.getTrackArc(track, stackPane,GRID_DIMENSIONS);
             stackPane.getChildren().add(arc);
-            if (track.getInDirection() == Direction.LEFT){
-                arc.setCenterY(100);
-                arc.setCenterX(100);
-            }
+
         }
 
          /*

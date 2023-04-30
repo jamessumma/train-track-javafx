@@ -9,6 +9,7 @@ import wsu.edu.traintrackjavafx.model.interfaces.TrackInterface;
 import java.util.ArrayList;
 
 public class Track implements TrackInterface {
+    private static final int TRACK_OFFSET = 2;
 
     // 8 possible directions given that a curved track curves exactly 45 degrees
 
@@ -59,25 +60,25 @@ public class Track implements TrackInterface {
         int y = this.curTrackPosition.getY();
 
         if (relDir == Direction.UP) {
-            y-=3;
+            y-=TRACK_OFFSET;
         } else if (relDir == Direction.UPRIGHT) {
-            x+=3;
-            y-=3;
+            x+=TRACK_OFFSET;
+            y-=TRACK_OFFSET;
         } else if (relDir == Direction.RIGHT) {
-            x+=3;
+            x+=TRACK_OFFSET;
         } else if (relDir == Direction.DOWNRIGHT) {
-            x+=3;
-            y+=3;
+            x+=TRACK_OFFSET;
+            y+=TRACK_OFFSET;
         } else if (relDir == Direction.DOWN) {
-            y+=3;
+            y+=TRACK_OFFSET;
         } else if (relDir == Direction.DOWNLEFT) {
-            x-=3;
-            y+=3;
+            x-=TRACK_OFFSET;
+            y+=TRACK_OFFSET;
         } else if (relDir == Direction.LEFT) {
-            x-=3;
+            x-=TRACK_OFFSET;
         } else if (relDir == Direction.UPLEFT) {
-            x-=3;
-            y-=3;
+            x-=TRACK_OFFSET;
+            y-=TRACK_OFFSET;
         }
         return new OrderedPair(x, y);
     }
