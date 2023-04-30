@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Stack;
 
 public class CommandHistory {
-    private List<Command> commands = new ArrayList<>();
 
     Stack<Command> done;
     Stack<Command> undone;
