@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="train-track-javafx" target="17" />
+      <module name="train-track-javafx" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>

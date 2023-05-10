@@ -14,6 +14,8 @@ import wsu.edu.traintrackjavafx.controller.ApplicationController;
 import wsu.edu.traintrackjavafx.controller.GridController;
 import wsu.edu.traintrackjavafx.model.enums.TrackType;
 
+import java.util.Locale;
+
 public class ToolbarView {
     private final HBox root;
     private GridController controller;
@@ -30,7 +32,6 @@ public class ToolbarView {
         leftTrackButton.setText("Left Curve");
         //rectangleButton.setGraphic(new ImageView(new Image("/images/rectangle.png")));
         leftTrackButton.setOnAction(event -> {
-            applicationController.setClickerTrackType(TrackType.CURVELEFT);
             System.out.println("tracktype set to curve left");
             applicationController.addTrack(TrackType.CURVELEFT);
         });
@@ -39,7 +40,6 @@ public class ToolbarView {
         straightTrackButton.setText("Straight Track");
         //circleButton.setGraphic(new ImageView(new Image("/images/circle.png")));
         straightTrackButton.setOnAction(event -> {
-            applicationController.setClickerTrackType(TrackType.STRAIGHT);
             System.out.println("tracktype set to straight");
             applicationController.addTrack(TrackType.STRAIGHT);
         });
@@ -48,16 +48,8 @@ public class ToolbarView {
         rightTrackButton.setText("Right Track");
         //circleButton.setGraphic(new ImageView(new Image("/images/circle.png")));
         rightTrackButton.setOnAction(event -> {
-            applicationController.setClickerTrackType(TrackType.CURVERIGHT);
             System.out.println("tracktype set to curve right");
             applicationController.addTrack(TrackType.CURVERIGHT);
-        });
-
-        Button toggleSnapping = new Button();
-        toggleSnapping.setText("Toggle Snapping");
-        //circleButton.setGraphic(new ImageView(new Image("/images/circle.png")));
-        toggleSnapping.setOnAction(event -> {
-            // ask the controller to set the clicker to the track associated with the button
         });
 
         Button undo = new Button();
@@ -91,14 +83,14 @@ public class ToolbarView {
         this.editConfiguration = new TextField();
         Button editConfigButton = new Button();
         editConfigButton.setOnAction(event -> {
-            String config = editConfiguration.getText();
+            String config = editConfiguration.getText().toUpperCase(Locale.ROOT);
             applicationController.editConfiguration(config);
             System.out.println(config);
         });
         editConfigButton.setText("Edit Track Configuration");
         configArea.getChildren().addAll(text, editConfiguration, editConfigButton);
 
-        root.getChildren().addAll(leftTrackButton, straightTrackButton, rightTrackButton, toggleSnapping, undo, redo, configArea);
+        root.getChildren().addAll(leftTrackButton, straightTrackButton, rightTrackButton, undo, redo, configArea);
     }
 
     public void updateConfigText(String s){

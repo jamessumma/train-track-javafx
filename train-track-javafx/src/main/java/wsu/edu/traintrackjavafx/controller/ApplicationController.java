@@ -19,12 +19,10 @@ public class ApplicationController {
     private static final int GRID_ROWS = 85;
     MainView mainView;
     Grid grid;
-    Clicker clicker;
     CommandHistory commandHistory;
 
     public ApplicationController(Stage stage){
         this.grid = new Grid(this);
-        this.clicker = new Clicker(this);
         mainView = new MainView(stage, this);
         this.commandHistory = new CommandHistory();
     }
@@ -71,9 +69,7 @@ public class ApplicationController {
         mainView.updateConfigText(text);
     }
 
-    public void setClickerTrackType(TrackType trackType){
-        clicker.setTrackType(trackType);
-    }
+
 
 
 }
